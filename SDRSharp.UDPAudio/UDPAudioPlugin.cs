@@ -48,7 +48,6 @@ namespace SDRSharp.UDPAudio
             control_.RegisterStreamHook(_UDPaudioProcessor, ProcessorType.FilteredAudioOutput);
             _UDPaudioStreamer = new SimpleStreamer(_UDPaudioProcessor, "127.0.0.1", 7355);
 
-            //Instanciate all needed objects
             _controlpanel = new Controlpanel();          
             _controlpanel.StartStreamingAF += SDRSharp_StreamerChanged;
 
@@ -86,38 +85,7 @@ namespace SDRSharp.UDPAudio
             get { return true; }
         }
         #endregion 
-        private void SDRSharp_DownlinkFreqChanged(string Frequency)
-        {
-            
-            if (control_.IsPlaying && control_.SourceIsTunable)
-            {
-                    control_.Frequency = long.Parse(Frequency);
-                    control_.CenterFrequency = control_.Frequency;
-            }
-            else if (control_.IsPlaying)
-            {
-                switch (control_.DetectorType)
-                {
-                    //IQ Source used for IC-9700
-                    case DetectorType.AM:
-                    case DetectorType.NFM:
-                    case DetectorType.CW:
-                        control_.Frequency = (long)11939;
-                        break;
-                    case DetectorType.USB:
-                        control_.Frequency = (long)11939 - control_.FilterBandwidth;
-                        break;
-                    case DetectorType.LSB:
-                        control_.Frequency = (long)11939 + control_.FilterBandwidth;
-                        break;
-                    default:
-                        control_.Frequency = (long)11939;
-                        break;
-                }
-                
-                
-            }               
-        }
+
     }
     //End of Class UDPAudioPlugin
 }

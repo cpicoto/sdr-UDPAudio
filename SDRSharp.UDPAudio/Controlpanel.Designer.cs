@@ -52,19 +52,19 @@ namespace SDRSharp.UDPAudio
             this.labelVersion = new System.Windows.Forms.LinkLabel();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxStreamAF = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxStreamAF = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(6, 0);
+            this.labelVersion.Location = new System.Drawing.Point(232, 196);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(38, 20);
@@ -96,6 +96,50 @@ namespace SDRSharp.UDPAudio
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(204, 79);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(50, 26);
+            this.textBox2.TabIndex = 37;
+            this.textBox2.Text = "7355";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(185, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 20);
+            this.label2.TabIndex = 36;
+            this.label2.Text = ":";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(55, 137);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(166, 38);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "Change IP/PORT";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(75, 79);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(104, 26);
+            this.textBox1.TabIndex = 34;
+            this.textBox1.Text = "127.0.0.1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(45, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 20);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "IP";
+            // 
             // checkBoxStreamAF
             // 
             this.checkBoxStreamAF.AutoSize = true;
@@ -109,50 +153,6 @@ namespace SDRSharp.UDPAudio
             this.checkBoxStreamAF.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.checkBoxStreamAF.UseVisualStyleBackColor = true;
             this.checkBoxStreamAF.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 20);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "IP";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(75, 79);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(104, 26);
-            this.textBox1.TabIndex = 34;
-            this.textBox1.Text = "127.0.0.1";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(65, 141);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 38);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Change IP/PORT";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(185, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 20);
-            this.label2.TabIndex = 36;
-            this.label2.Text = ":";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(204, 79);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(50, 26);
-            this.textBox2.TabIndex = 37;
-            this.textBox2.Text = "7355";
             // 
             // Controlpanel
             // 

@@ -23,6 +23,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Net;
 
 namespace SDRSharp.UDPAudio
 {
@@ -30,11 +31,15 @@ namespace SDRSharp.UDPAudio
     public partial class Controlpanel : UserControl
     {
 
-        public Action<Boolean> StartStreamingAF;
-
+        public Action<Boolean,String,String> StartStreamingAF;
+        public String HostIP = "127.0.0.1";
+        public String HostPort = "7355";
         public Controlpanel()
         {
             InitializeComponent();
+            //TODO: Read from File
+            this.textBox1.Text = HostIP;
+            this.textBox2.Text = HostPort;
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             this.labelVersion.Text = "v" + fvi.FileMajorPart + "." + fvi.FileMinorPart + "." + fvi.FileBuildPart;
@@ -61,23 +66,46 @@ namespace SDRSharp.UDPAudio
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxStreamAF.Checked) StartStreamingAF?.Invoke(true);
-            else StartStreamingAF?.Invoke(false);
+            if (checkBoxStreamAF.Checked) StartStreamingAF?.Invoke(true, HostIP, HostPort);
+            else StartStreamingAF?.Invoke(false, HostIP, HostPort);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            String gr_ip = this.textBox1.Text;
+            String gr_port = this.textBox2.Text;
+            int port;
+            IPAddress validIP;
+            try 
+            { 
+                validIP = IPAddress.Parse(gr_ip);
+                HostIP = gr_ip;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid IP: {0}:{1}", gr_ip, ex.Message);
+                this.textBox1.Text = HostIP;
+            }
+            try
+            {
+                port=int.Parse(gr_port);
+                if ((port > 6999) && (port < 50001))
+                    HostPort = gr_port;
+                else
+                    this.textBox2.Text = HostPort;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid Port: {0}:{1}", gr_port, ex.Message);
+                this.textBox2.Text = HostPort;
+            }
+            
             if (checkBoxStreamAF.Checked)
             {
-                StartStreamingAF?.Invoke(false);
-                //Change IP and Port
-                StartStreamingAF?.Invoke(true);
+               //Stop & Start if already running
+                StartStreamingAF?.Invoke(false, HostIP, HostPort);
+                StartStreamingAF?.Invoke(true, HostIP, HostPort);
             }
-            else
-            {
-                // just chnge the IP and Port
-            }
-            //StartStreamingAF?.Invoke(false);
         }
     }
 }

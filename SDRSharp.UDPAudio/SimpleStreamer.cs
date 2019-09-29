@@ -44,11 +44,12 @@ namespace SDRSharp.UDPAudio
 {
     public partial class UDPAudioPlugin : ISharpPlugin
     {
-        private void SDRSharp_StreamerChanged(Boolean StreamAF)
+        private void SDRSharp_StreamerChanged(Boolean StreamAF, String Ip, String Port)
         {
             if (StreamAF && !_UDPaudioStreamer.IsStreaming)
             {
                 PrepareUDPStreamer();
+                _UDPaudioStreamer.ChangeEndPoint(Ip, Port);
                 _UDPaudioStreamer.StartStreaming();
             }
             if (!StreamAF && _UDPaudioStreamer.IsStreaming)
@@ -146,9 +147,9 @@ namespace SDRSharp.UDPAudio
             _udpEP = new IPEndPoint(IPAddress.Parse(Host), Port); 
         }
 
-        public void ChangeEndPoint(String Host, int Port)
+        public void ChangeEndPoint(String Host, String Port)
         {
-            _udpEP = new IPEndPoint(IPAddress.Parse(Host), Port);
+            _udpEP = new IPEndPoint(IPAddress.Parse(Host), int.Parse(Port));
         }
         ~SimpleStreamer()
         {
@@ -314,7 +315,6 @@ namespace SDRSharp.UDPAudio
 
             for (var i = 0; i < convertedBytes; i++)
             {
-                //System.Buffer.BlockCopy(resampleStream.DestBuffer, counter, 0, MAX_PAYLOAD);
                 if (counter == MAX_PAYLOAD)
                 {
 
@@ -352,13 +352,6 @@ namespace SDRSharp.UDPAudio
                     else Thread.Sleep(0);
                 }
             }
-            /*
-            if (elapsed.Minutes > 5)
-            {
-                LastCheck = DateTime.Now;
-                CurrentCounter = 0;
-            }
-            */
         }
 
         private void CreateBuffers(int size)
@@ -423,11 +416,6 @@ namespace SDRSharp.UDPAudio
             FreeBuffers();
 
             _streamerSender = null;
-        }
-
-        internal void UpdateIP(string NewIP)
-        {
-            _udpEP = new IPEndPoint(IPAddress.Parse(NewIP), _port);
         }
 
         #endregion
