@@ -1,2 +1,2 @@
 language: csharp
-solution: SDRSharp.SatnogsTracker.sln
+solution: SDRSharp.UDPAudio.sln
