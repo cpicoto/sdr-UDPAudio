@@ -264,3 +264,4 @@ __pycache__/
 /SDRSharp.SatnogsTracker/PaintBand.IL
 /Binaries/Debug
 /Binaries/Release
+/SDRSharp.UDPAudio/SDRSharp.exe
