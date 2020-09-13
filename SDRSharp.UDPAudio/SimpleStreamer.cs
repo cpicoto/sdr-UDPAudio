@@ -387,19 +387,19 @@ namespace SDRSharp.UDPAudio
 
         public void StartStreaming()
         {
-            if (_streamerSender == null)
+            if (_streamerSender == null && _sampleRate != 0)
             {
                 _circularBufferHead = 0;
                 _circularBufferTail = 0;
-
                 _skippedBuffersCount = 0;
-
                 _bufferEvent.Reset();
-
                 _streamerSender = new Thread(StreamerThread);
-
                 _streamerRunning = true;
                 _streamerSender.Start();
+            }
+            else
+            { 
+                _streamerRunning = false;
             }
         }
 
